@@ -1,1 +1,127 @@
+<!doctype html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#190d14">
+  <meta name="description" content="A little surprise, made with love.">
+  <title>Just for you ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="scene" aria-hidden="true"></div>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="petal-layer" id="petals" aria-hidden="true"></div>
+  <audio id="proposalAudio" src="YAAD HAI NA.mp3" loop preload="none"></audio>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Just for you">
+      <span class="brand-heart">♡</span>
+      <span>JUST FOR YOU</span>
+    </a>
+    <button id="musicToggle" class="music" type="button" aria-pressed="false">
+      <span class="music-note" aria-hidden="true">♫</span>
+      <span id="musicLabel">Play our song</span>
+      <span class="music-bars" aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+    </button>
+  </header>
+  <main class="stage" id="stage">
+    <div class="scene-caption">
+      <span class="caption-dot"></span>
+      A LITTLE SURPRISE
+      <span class="caption-dot"></span>
+    </div>
+    <section class="panel" aria-live="polite" aria-atomic="true">
+      <div class="heart-stage" aria-hidden="true">
+        <span class="heart-orbit orbit-one"></span>
+        <span class="heart-orbit orbit-two"></span>
+        <span class="neon-heart">♥</span>
+      </div>
+      <article class="view show" id="view-intro" aria-labelledby="introTitle">
+        <p class="overline">A note from Sami</p>
+        <h1 id="introTitle">Hey,
+          <em id="lovedOne">Jaan</em>
+          <span class="rose-dot">.</span>
+        </h1>
+        <p class="intro-copy">Tumhare liye kuch khaas banaya hai.<br>Bas dil se jawab dena—aur iss chhoti si kahani ka maza lena.</p>
+        <div class="rule">
+          <span>♡</span>
+        </div>
+        <p class="whisper">Headphones on. Dil khula. Ready?</p>
+        <button class="primary open-button" id="begin" type="button">
+          <span class="button-icon">✉</span>
+          Open your little surprise
+          <span class="arrow">→</span></button>
+        <p class="tiny-note">A tiny love story, just for you</p>
+      </article>
+      <article class="view" id="view-quiz" aria-labelledby="question" hidden>
+        <div class="quiz-head">
+          <span id="stepText">OUR LITTLE STORY · 01 / 03</span>
+          <span class="heart-mark">♡</span>
+        </div>
+        <div class="progress">
+          <span id="progress"></span>
+        </div>
+        <p class="overline" id="questionLabel">Imagine this…</p>
+        <h2 id="question" tabindex="-1"></h2>
+        <p id="subquestion" class="subquestion"></p>
+        <div id="options" class="options"></div>
+        <p id="feedback" class="feedback" role="status" aria-live="polite">Choose your favourite ♡</p>
+        <button class="back" type="button" id="back" hidden>← Back</button>
+      </article>
+      <article class="view final-view" id="view-proposal" aria-labelledby="proposalTitle" hidden>
+        <div class="final-flower" aria-hidden="true">✿</div>
+        <p class="overline">One honest question</p>
+        <h2 id="proposalTitle">Kya tum mere saath aur khoobsurat yaadein banana chahogi?</h2>
+        <p class="final-copy">No pressure, meri jaan. Bas tumhe batana tha ke tum mere liye kitni special ho.</p>
+        <div class="actions">
+          <button type="button" id="yes" class="primary yes">Haan, bilkul
+            <span>♡</span>
+          </button>
+          <button type="button" id="time" class="secondary">Mujhe thora waqt chahiye</button>
+        </div>
+        <p class="tiny-note">Jo bhi jawab ho, main uski izzat karunga.</p>
+      </article>
+      <article class="view ending" id="view-yes" aria-labelledby="yesTitle" hidden>
+        <div class="final-flower pulse" aria-hidden="true">♥</div>
+        <p class="overline">This is my favourite part</p>
+        <h2 id="yesTitle">You just made my whole world brighter.</h2>
+        <p class="final-copy">Haan kehne ke liye shukriya. Ab aur hansi, chhoti adventures aur bohat si khoobsurat yaadein—saath saath. ♡</p>
+        <div class="signature">With all my heart,<br>
+          <em id="sender">Sami</em>
+        </div>
+        <button class="restart" type="button" data-restart>Phir se dekho ↺</button>
+      </article>
+      <article class="view ending" id="view-time" aria-labelledby="timeTitle" hidden>
+        <div class="final-flower" aria-hidden="true">♡</div>
+        <p class="overline">Thank you for being honest</p>
+        <h2 id="timeTitle">Aaram se sochna—koi jaldi nahi.</h2>
+        <p class="final-copy">Tumhara jawab jo bhi ho, main uski izzat karta hoon. Is chhoti si kahani ko sunne ke liye
+          shukriya.</p>
+        <div class="signature">With care,<br>
+          <em id="sender2">Sami</em>
+        </div>
+        <button class="restart" type="button" data-restart>Phir se dekho ↺</button>
+      </article>
+    </section>
+    <div class="bottom-note">
+      <span>MADE WITH COURAGE</span>
+      <span class="bottom-heart">♥</span>
+      <span>AND A LITTLE MAGIC</span>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>
