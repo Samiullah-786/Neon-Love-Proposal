@@ -6,7 +6,7 @@ const QUESTIONS = [
   { label: 'One last little question', title: 'Aur agar humari kahani ka ek song ho…?', sub: 'I might already have picked one for us.', answers: ['“Yaad Hai Na” — obviously 🎶', 'Koi soft sa romantic song', 'Hum apna song khud choose karein'], replies: ['Tumne title bhi pakar liya 🎶', 'Already setting the mood ♡', 'Deal. Humara song, humari choice ✨'] }
 ];
 
-const $ = (s, root=document) => root.querySelector(s);
+const $ = (s, root = document) => root.querySelector(s);
 const screens = [...document.querySelectorAll('.view')];
 const audio = $('#proposalAudio');
 const musicToggle = $('#musicToggle');
@@ -74,7 +74,7 @@ function makePetal() {
   $('#petals').appendChild(el);
   setTimeout(() => el.remove(), duration * 1000 + 200);
 }
-for (let i=0;i<7;i++) setTimeout(makePetal,i*550);
+for (let i = 0; i < 7; i++) setTimeout(makePetal, i * 550);
 petalTimer = setInterval(makePetal, 1900);
 
 function renderQuestion() {
@@ -82,44 +82,44 @@ function renderQuestion() {
   questionLabel.textContent = item.label;
   question.textContent = item.title;
   $('#subquestion').textContent = item.sub;
-  stepText.textContent = `OUR LITTLE STORY · ${String(current+1).padStart(2,'0')} / ${String(QUESTIONS.length).padStart(2,'0')}`;
-  progress.style.width = `${current/QUESTIONS.length*100}%`;
-  $('#view-quiz .progress').setAttribute('role','progressbar');
-  $('#view-quiz .progress').setAttribute('aria-valuemin','0');
-  $('#view-quiz .progress').setAttribute('aria-valuemax',String(QUESTIONS.length));
-  $('#view-quiz .progress').setAttribute('aria-valuenow',String(current));
+  stepText.textContent = `OUR LITTLE STORY · ${String(current + 1).padStart(2, '0')} / ${String(QUESTIONS.length).padStart(2, '0')}`;
+  progress.style.width = `${current / QUESTIONS.length * 100}%`;
+  $('#view-quiz .progress').setAttribute('role', 'progressbar');
+  $('#view-quiz .progress').setAttribute('aria-valuemin', '0');
+  $('#view-quiz .progress').setAttribute('aria-valuemax', String(QUESTIONS.length));
+  $('#view-quiz .progress').setAttribute('aria-valuenow', String(current));
   feedback.textContent = 'Choose your favourite ♡';
   options.replaceChildren();
-  item.answers.forEach((answer,index) => {
+  item.answers.forEach((answer, index) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'option';
     const number = document.createElement('span');
     number.className = 'option-number';
-    number.setAttribute('aria-hidden','true');
-    number.textContent = String.fromCharCode(65+index);
+    number.setAttribute('aria-hidden', 'true');
+    number.textContent = String.fromCharCode(65 + index);
     const text = document.createElement('span');
     text.textContent = answer;
-    button.append(number,text);
-    button.addEventListener('click', () => choose(button,index));
+    button.append(number, text);
+    button.addEventListener('click', () => choose(button, index));
     options.append(button);
   });
   $('#back').hidden = current === 0;
 }
 
-function choose(button,index) {
+function choose(button, index) {
   if (button.disabled) return;
   clearTimeout(advanceTimer);
   options.querySelectorAll('button').forEach(b => { b.disabled = true; });
   button.classList.add('picked');
   feedback.textContent = QUESTIONS[current].replies[index];
-  progress.style.width = `${(current+1)/QUESTIONS.length*100}%`;
-  $('#view-quiz .progress').setAttribute('aria-valuenow',String(current+1));
+  progress.style.width = `${(current + 1) / QUESTIONS.length * 100}%`;
+  $('#view-quiz .progress').setAttribute('aria-valuenow', String(current + 1));
   advanceTimer = setTimeout(() => {
     current++;
     if (current < QUESTIONS.length) {
       renderQuestion();
-      question.focus({preventScroll:true});
+      question.focus({ preventScroll: true });
     } else show('view-proposal');
   }, 900);
 }
@@ -129,14 +129,14 @@ $('#begin').addEventListener('click', () => {
   current = 0;
   renderQuestion();
   show('view-quiz');
-  question.focus({preventScroll:true});
+  question.focus({ preventScroll: true });
 });
 $('#back').addEventListener('click', () => {
   clearTimeout(advanceTimer);
   if (current > 0) current--;
   else { show('view-intro'); return; }
   renderQuestion();
-  question.focus({preventScroll:true});
+  question.focus({ preventScroll: true });
 });
 $('#yes').addEventListener('click', () => {
   show('view-yes');
@@ -146,8 +146,8 @@ $('#yes').addEventListener('click', () => {
 $('#time').addEventListener('click', () => show('view-time'));
 document.querySelectorAll('[data-restart]').forEach(button => button.addEventListener('click', () => {
   clearTimeout(advanceTimer);
-  current=0;
-  progress.style.width='0%';
+  current = 0;
+  progress.style.width = '0%';
   show('view-intro');
 }));
 
@@ -164,7 +164,7 @@ audio.addEventListener('error', () => {
 
 function celebration() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  for(let i=0;i<34;i++) setTimeout(makePetal,i*55);
+  for (let i = 0; i < 34; i++) setTimeout(makePetal, i * 55);
 }
 window.addEventListener('pagehide', () => {
   audio.pause();
@@ -184,6 +184,6 @@ card.addEventListener('pointermove', event => {
   card.style.setProperty('--tilt-x', `${(-y * factor).toFixed(2)}deg`);
 });
 card.addEventListener('pointerleave', () => {
-  card.style.setProperty('--tilt-x','0deg');
-  card.style.setProperty('--tilt-y','0deg');
+  card.style.setProperty('--tilt-x', '0deg');
+  card.style.setProperty('--tilt-y', '0deg');
 });
